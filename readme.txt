@@ -1,55 +1,89 @@
-=== Kis Blocks ===
-Contributors:      The WordPress Contributors
-Tags:              block
-Tested up to:      6.8
-Stable tag:        0.1.0
-License:           GPL-2.0-or-later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+# Kis Blocks
 
-Example block scaffolded with Create Block tool.
+Kis Blocks is a private WordPress block library plugin for building modular, schema-driven Gutenberg blocks used across content-focused websites.
 
-== Description ==
+This repository contains a reusable set of custom blocks designed to prioritize:
+- Structured content models
+- Predictable markup
+- Minimal editor freedom
+- Long-term maintainability
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+The blocks are implemented as a standalone plugin so they can be versioned, reused, and deployed across multiple WordPress sites without coupling to a specific theme.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+---
 
-== Installation ==
+## Philosophy
 
-This section describes how to install the plugin and get it working.
+This block library is intentionally opinionated.
 
-e.g.
+- Blocks encode content structure, not free-form layout
+- Editors assemble pages using predefined components
+- Layout and styling live in code, not the editor UI
+- Each block has a clear schema and a single responsibility
 
-1. Upload the plugin files to the `/wp-content/plugins/kis-blocks` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
+This approach reduces editorial drift, simplifies QA, and keeps sites maintainable over time.
 
+---
 
-== Frequently Asked Questions ==
+## Technical Overview
 
-= A question that someone might have =
+- Built using the WordPress Block Editor (Gutenberg)
+- Metadata-first registration via `block.json`
+- Dynamic blocks with server-side rendering where appropriate
+- Compiled using `@wordpress/scripts`
+- Distributed as a WordPress plugin
 
-An answer to that question.
+---
 
-= What about foo bar? =
+## Repository Structure
 
-Answer to foo bar dilemma.
+kis-blocks/
+├── kis-blocks.php
+├── package.json
+├── src/
+│   └── blocks/
+│       └── /
+│           ├── block.json
+│           ├── edit.js
+│           ├── render.php (for dynamic blocks)
+│           └── index.js
+├── build/
+└── README.md
 
-== Screenshots ==
+---
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+## Installation
 
-== Changelog ==
+1. Clone or download this repository
+2. Build assets locally:
 
-= 0.1.0 =
-* Release
+npm install
+npm run build
 
-== Arbitrary section ==
+3. Upload the `kis-blocks` folder to:
 
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+wp-content/plugins/
+
+4. Activate **Kis Blocks** in the WordPress admin
+
+---
+
+## Development Workflow
+
+- Blocks are developed locally and committed to this repository
+- Compiled assets in `build/` are committed and deployed with the plugin
+- The plugin is installed on a sandbox WordPress site for editor and front-end validation
+- Releases are versioned via Git tags
+
+---
+
+## Status
+
+This is an actively developed internal block library.
+The API and block set may evolve as new patterns are added.
+
+---
+
+## License
+
+GPL-2.0-or-later
