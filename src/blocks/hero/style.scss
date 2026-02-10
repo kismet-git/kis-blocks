@@ -1,0 +1,27 @@
+.kb-hero {
+	display: block;
+}
+
+.kb-hero__inner {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.kb-hero__actions {
+	display: flex;
+	margin-top: 0.5rem;
+}
+
+.kb-hero__cta {
+	display: inline-flex;
+	align-items: center;
+}
+
+.kb-hero--align-center {
+	text-align: center;
+}
+
+.kb-hero--align-center .kb-hero__actions {
+	justify-content: center;
+}

@@ -1,26 +1,47 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
-	'kis-blocks' => array(
+	'hero' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/kis-blocks',
+		'name' => 'kis/hero',
 		'version' => '0.1.0',
-		'title' => 'Kis Blocks',
-		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
-		'example' => array(
-			
-		),
+		'title' => 'Hero',
+		'category' => 'kis-blocks',
+		'icon' => 'heading',
+		'description' => 'Editorial hero for page-level introductions.',
 		'supports' => array(
 			'html' => false
+		),
+		'attributes' => array(
+			'eyebrow' => array(
+				'type' => 'string'
+			),
+			'headline' => array(
+				'type' => 'string'
+			),
+			'subhead' => array(
+				'type' => 'string'
+			),
+			'primaryText' => array(
+				'type' => 'string'
+			),
+			'primaryUrl' => array(
+				'type' => 'string'
+			),
+			'alignment' => array(
+				'type' => 'string',
+				'enum' => array(
+					'left',
+					'center'
+				),
+				'default' => 'left'
+			)
 		),
 		'textdomain' => 'kis-blocks',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
+		'render' => 'file:./render.php'
 	)
 );

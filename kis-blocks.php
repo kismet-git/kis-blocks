@@ -16,6 +16,34 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+/**
+ * Register Kis Blocks category in the block inserter.
+ *
+ * @param array   $categories Block categories.
+ * @param WP_Post $post       Post being edited.
+ * @return array
+ */
+function kis_blocks_register_category( $categories, $post ) {
+	foreach ( $categories as $category ) {
+		if ( isset( $category['slug'] ) && 'kis-blocks' === $category['slug'] ) {
+			return $categories;
+		}
+	}
+
+	return array_merge(
+		array(
+			array(
+				'slug'  => 'kis-blocks',
+				'title' => __( 'Kis Blocks', 'kis-blocks' ),
+				'icon'  => null,
+			),
+		),
+		$categories
+	);
+}
+add_filter( 'block_categories_all', 'kis_blocks_register_category', 10, 2 );
+
 /**
  * Registers the block(s) metadata from the `blocks-manifest.php` and registers the block type(s)
  * based on the registered block metadata. Behind the scenes, it registers also all assets so they can be enqueued

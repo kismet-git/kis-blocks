@@ -1,0 +1,43 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "kis/hero",
+  "version": "0.1.0",
+  "title": "Hero",
+  "category": "kis-blocks",
+  "icon": "heading",
+  "description": "Editorial hero for page-level introductions.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "eyebrow": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "subhead": {
+      "type": "string"
+    },
+    "primaryText": {
+      "type": "string"
+    },
+    "primaryUrl": {
+      "type": "string"
+    },
+    "alignment": {
+      "type": "string",
+      "enum": [
+        "left",
+        "center"
+      ],
+      "default": "left"
+    }
+  },
+  "textdomain": "kis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
