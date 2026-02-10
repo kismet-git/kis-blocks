@@ -12,7 +12,10 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --webpack-copy-php --blocks-manifest"
+		"release": "npm run build && cd .. && mkdir -p releases && zip -r releases/kis-blocks-v$npm_package_version.zip kis-blocks -x \"kis-blocks/node_modules/*\" \"kis-blocks/.git/*\" \"kis-blocks/*.zip\" \"kis-blocks/.DS_Store\" \"kis-blocks/**/.DS_Store\"",
+		"start": "wp-scripts start --webpack-copy-php --blocks-manifest",
+		"verify:zip": "unzip -l ../releases/kis-blocks-v$npm_package_version.zip | awk '{print $4}' | grep -qx 'kis-blocks/kis-blocks.php' || (echo 'ZIP missing kis-blocks/kis-blocks.php (root folder required)' && exit 1)",
+		"verify:zip:structure": "unzip -l ../releases/kis-blocks-v$npm_package_version.zip | awk '{print $4}' | grep -qx 'kis-blocks.php' && (echo 'ZIP has root-level kis-blocks.php (root folder required)' && exit 1) || true"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "latest",
