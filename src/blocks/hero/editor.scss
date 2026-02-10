@@ -2,6 +2,32 @@
 	margin-bottom: 0.5rem;
 }
 
+.kb-hero__warning .components-notice {
+	margin: 0;
+}
+
+.kb-hero__headline-hint {
+	font-size: 0.75rem;
+	margin: -0.25rem 0 0.5rem;
+	opacity: 0.7;
+}
+
 .kb-hero__cta--placeholder {
 	opacity: 0.6;
+}
+
+.kb-hero__cta--disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.kb-hero__cta-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.kb-hero__cta-helper {
+	font-size: 0.75rem;
+	opacity: 0.7;
 }

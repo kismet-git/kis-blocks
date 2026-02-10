@@ -5,7 +5,7 @@ return array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
 		'name' => 'kis/hero',
-		'version' => '0.1.0',
+		'version' => '0.2.0',
 		'title' => 'Hero',
 		'category' => 'kis-blocks',
 		'icon' => 'heading',

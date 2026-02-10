@@ -36,13 +36,11 @@ export default function Edit( props ) {
 		setAttributes,
 	} = props;
 	const hasHeadline = Boolean( headline && headline.trim() );
-	const hasCta = Boolean(
-		primaryText &&
-			primaryText.trim() &&
-			primaryUrl &&
-			primaryUrl.trim()
-	);
+	const hasPrimaryText = Boolean( primaryText && primaryText.trim() );
+	const hasPrimaryUrl = Boolean( primaryUrl && primaryUrl.trim() );
+	const hasCta = hasPrimaryText && hasPrimaryUrl;
 	const safeAlignment = alignment || 'left';
+	const headlineWarningId = 'kb-hero-headline-required';
 	const blockProps = useBlockProps( {
 		className: `kb-hero kb-hero--align-${ safeAlignment }`,
 	} );
@@ -74,13 +72,20 @@ export default function Edit( props ) {
 			<section { ...blockProps }>
 				<div className="kb-hero__inner">
 					{ ! hasHeadline && (
-						<Notice
-							status="warning"
-							isDismissible={ false }
-							className="kb-hero__notice"
-						>
-							{ __( 'Headline is required.', 'kis-blocks' ) }
-						</Notice>
+						<div className="kb-hero__warning">
+							<Notice
+								status="warning"
+								isDismissible={ false }
+								className="kb-hero__notice"
+							>
+								<span id={ headlineWarningId }>
+									{ __(
+										'Headline is required.',
+										'kis-blocks'
+									) }
+								</span>
+							</Notice>
+						</div>
 					) }
 					<RichText
 						tagName="p"
@@ -100,10 +105,18 @@ export default function Edit( props ) {
 						allowedFormats={ [] }
 						multiline={ false }
 						placeholder={ __( 'Headline', 'kis-blocks' ) }
+						aria-describedby={
+							! hasHeadline ? headlineWarningId : undefined
+						}
 						onChange={ ( value ) =>
 							setAttributes( { headline: value } )
 						}
 					/>
+					{ ! hasHeadline && (
+						<p className="kb-hero__headline-hint">
+							{ __( 'Headline is required.', 'kis-blocks' ) }
+						</p>
+					) }
 					<RichText
 						tagName="p"
 						className="kb-hero__subhead"
@@ -136,6 +149,32 @@ export default function Edit( props ) {
 									}
 								/>
 							</a>
+						) : hasPrimaryText ? (
+							<div className="kb-hero__cta-group">
+								<div
+									className="kb-hero__cta kb-hero__cta--disabled"
+									aria-disabled="true"
+								>
+									<RichText
+										tagName="span"
+										value={ primaryText }
+										allowedFormats={ [] }
+										multiline={ false }
+										placeholder={ __(
+											'Primary action (optional)',
+											'kis-blocks'
+										) }
+										onChange={ ( value ) =>
+											setAttributes( {
+												primaryText: value,
+											} )
+										}
+									/>
+								</div>
+								<span className="kb-hero__cta-helper">
+									{ __( 'Add a URL to enable.', 'kis-blocks' ) }
+								</span>
+							</div>
 						) : (
 							<div className="kb-hero__cta kb-hero__cta--placeholder">
 								<RichText
